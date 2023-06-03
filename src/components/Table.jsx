@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-function Table({ list }) {
+function Table({ list, totalAmount }) {
   return (
     <>
       <table width="100%" className="mb-10">
@@ -18,13 +18,18 @@ function Table({ list }) {
               <tr>
                 <td>{description}</td>
                 <td>{quantity}</td>
-                <td>{price}</td>
-                <td>{amount}</td>
+                <td>{parseInt(price).toLocaleString()}</td>
+                <td>{amount.toLocaleString()}</td>
               </tr>
             </tbody>
           </Fragment>
         ))}
       </table>
+      <div>
+        <h2 className="flex items-end justify-end text-gray-800 text-4xl font-bold mb-10">
+          Total: $ {totalAmount.toLocaleString()}
+        </h2>
+      </div>
     </>
   );
 }

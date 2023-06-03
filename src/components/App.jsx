@@ -28,6 +28,7 @@ export const App = () => {
   const [price, setPrice] = useState('');
   const [amount, setAmount] = useState('');
   const [list, setList] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
 
   const handlePrint = _ => window.print();
   return (
@@ -53,6 +54,8 @@ export const App = () => {
               amount={amount}
               list={list}
               setList={setList}
+              totalAmount={totalAmount}
+              setTotalAmount={setTotalAmount}
             />
             <Notes notes={notes} />
             <Footer
@@ -252,6 +255,8 @@ export const App = () => {
                 setAmount={setAmount}
                 list={list}
                 setList={setList}
+                totalAmount={totalAmount}
+                setTotalAmount={setTotalAmount}
               />
             </article>
 
