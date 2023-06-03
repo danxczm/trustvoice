@@ -1,6 +1,8 @@
 import { Fragment, useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { TiDeleteOutline, TiEdit } from 'react-icons/ti';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function TableForm({
   description,
@@ -23,6 +25,12 @@ function TableForm({
 
   const createRow = e => {
     e.preventDefault();
+
+    if (!description || !quantity || !price) {
+      toast.info('Please fill in all inputs ');
+      return;
+    }
+
     const newItems = {
       id: nanoid(5),
       description,
@@ -63,6 +71,7 @@ function TableForm({
 
   return (
     <>
+      <ToastContainer autoClose={3000} />
       <form onSubmit={createRow}>
         <div className="flex flex-col md:mt-16">
           <label htmlFor="description">Item description</label>

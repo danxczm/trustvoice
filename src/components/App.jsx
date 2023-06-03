@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import ClientDetails from './ClientDetails';
 import Dates from './Dates';
 import Footer from './Footer';
@@ -7,73 +7,85 @@ import MainDetails from './MainDetails';
 import Notes from './Notes';
 import Table from './Table';
 import TableForm from './TableForm';
+import ReactToPrint from 'react-to-print';
 
 export const App = () => {
-  const [showInvoice, setShowInvoice] = useState(true);
-  const [name, setName] = useState('Dan Danillo');
-  const [address, setAddress] = useState('Ukraine, Kyiv');
-  const [email, setEmail] = useState('dandanbohdan@gmail.com');
-  const [phone, setPhone] = useState('+38068394656');
-  const [bankName, setBankName] = useState('Mono Bank');
-  const [bankAccount, setBankAccount] = useState('1234 1231 1231 1232');
-  const [website, setWebsite] = useState('https://trusteeglobal.com/');
-  const [clientName, setClientName] = useState('WhiteBit');
-  const [clientAddress, setClientAddress] = useState('Ukraine, Kyiv');
-  const [invoiceNumber, setInvoiceNumber] = useState('124');
-  const [invoiceDate, setInvoiceDate] = useState('02.07.23');
-  const [dueDate, setDueDate] = useState('02.08.23');
-  const [notes, setNotes] = useState('Pay as soon as posible');
+  const [showInvoice, setShowInvoice] = useState(false);
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [bankName, setBankName] = useState('');
+  const [bankAccount, setBankAccount] = useState('');
+  const [website, setWebsite] = useState('');
+  const [clientName, setClientName] = useState('');
+  const [clientAddress, setClientAddress] = useState('');
+  const [invoiceNumber, setInvoiceNumber] = useState('');
+  const [invoiceDate, setInvoiceDate] = useState('');
+  const [dueDate, setDueDate] = useState('');
+  const [notes, setNotes] = useState('');
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState('');
   const [price, setPrice] = useState('');
   const [amount, setAmount] = useState('');
   const [list, setList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const componentRef = useRef();
 
   const handlePrint = _ => window.print();
   return (
     <>
       <main className="p-5 m-5 md:max-w-xl md:mx-auto lg:max-w-2xl xl:max-w-4xl bg-white rounded shadow">
         {showInvoice ? (
-          <div>
-            <Header handlePrint={handlePrint} />
-            <MainDetails name={name} address={address} />
-            <ClientDetails
-              clientName={clientName}
-              clientsAddress={clientAddress}
+          <>
+            <ReactToPrint
+              trigger={() => (
+                <button className="bg-purple-500 ml-5 text-white font-bold py-2 px-8 rounded shadow border-2 border-purple-500 hover:bg-transparent hover:text-purple-500 transition-all duration-300">
+                  Print/Download
+                </button>
+              )}
+              content={() => componentRef.current}
             />
-            <Dates
-              invoiceNumber={invoiceNumber}
-              invoiceDate={invoiceDate}
-              dueDate={dueDate}
-            />
-            <Table
-              description={description}
-              quantity={quantity}
-              price={price}
-              amount={amount}
-              list={list}
-              setList={setList}
-              totalAmount={totalAmount}
-              setTotalAmount={setTotalAmount}
-            />
-            <Notes notes={notes} />
-            <Footer
-              name={name}
-              address={address}
-              website={website}
-              email={email}
-              phone={phone}
-              bankAccoun={bankAccount}
-              bankName={bankName}
-            />
+            <div ref={componentRef} className="p-5">
+              <Header handlePrint={handlePrint} />
+              <MainDetails name={name} address={address} />
+              <ClientDetails
+                clientName={clientName}
+                clientsAddress={clientAddress}
+              />
+              <Dates
+                invoiceNumber={invoiceNumber}
+                invoiceDate={invoiceDate}
+                dueDate={dueDate}
+              />
+              <Table
+                description={description}
+                quantity={quantity}
+                price={price}
+                amount={amount}
+                list={list}
+                setList={setList}
+                totalAmount={totalAmount}
+                setTotalAmount={setTotalAmount}
+              />
+              <Notes notes={notes} />
+              <Footer
+                name={name}
+                address={address}
+                website={website}
+                email={email}
+                phone={phone}
+                bankAccoun={bankAccount}
+                bankName={bankName}
+              />
+            </div>
             <button
               className="mt-5 bg-purple-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-purple-500 hover:bg-transparent hover:text-purple-500 transition-all duration-300"
               onClick={() => setShowInvoice(false)}
             >
               Edit information
             </button>
-          </div>
+          </>
         ) : (
           <div className="flex flex-col justify-center">
             <article className="md:grid grid-cols-2 gap-10">

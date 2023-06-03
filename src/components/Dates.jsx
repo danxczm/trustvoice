@@ -11,7 +11,7 @@ function Dates({ invoiceNumber, invoiceDate, dueDate }) {
           {invoiceDate}
         </li>
         <li className="p-1">
-          <span className="font-bol d">Due date: </span>
+          <span className="font-bold">Due date: </span>
           {dueDate}
         </li>
       </ul>
