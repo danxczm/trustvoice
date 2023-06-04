@@ -2,7 +2,6 @@ import { useRef, useState } from 'react';
 import ClientDetails from './ClientDetails';
 import Dates from './Dates';
 import Footer from './Footer';
-import Header from './Header';
 import MainDetails from './MainDetails';
 import Notes from './Notes';
 import Table from './Table';
@@ -31,11 +30,11 @@ export const App = () => {
   const [list, setList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const componentRef = useRef();
+  const [selectedCurrency, setSelectedCurrency] = useState('USDT');
 
-  const handlePrint = _ => window.print();
   return (
     <>
-      <main className="p-5 m-5 md:max-w-xl md:mx-auto lg:max-w-2xl xl:max-w-4xl bg-white rounded shadow">
+      <main className="p-10 m-5 md:max-w-xl md:mx-auto lg:max-w-2xl xl:max-w-4xl bg-white rounded shadow">
         {showInvoice ? (
           <>
             <ReactToPrint
@@ -47,7 +46,6 @@ export const App = () => {
               content={() => componentRef.current}
             />
             <div ref={componentRef} className="p-5">
-              <Header handlePrint={handlePrint} />
               <MainDetails name={name} address={address} />
               <ClientDetails
                 clientName={clientName}
@@ -67,6 +65,8 @@ export const App = () => {
                 setList={setList}
                 totalAmount={totalAmount}
                 setTotalAmount={setTotalAmount}
+                selectedCurrency={selectedCurrency}
+                setSelectedCurrency={setSelectedCurrency}
               />
               <Notes notes={notes} />
               <Footer
@@ -90,24 +90,24 @@ export const App = () => {
           <div className="flex flex-col justify-center">
             <article className="md:grid grid-cols-2 gap-10">
               <div className="flex flex-col">
-                <label htmlFor="name">Enter your full name</label>
+                <label htmlFor="name">Full name</label>
                 <input
                   type="text"
                   name="text"
                   id="text"
-                  placeholder="Full name"
+                  placeholder="Enter your full name"
                   autoComplete="off"
                   value={name}
                   onChange={e => setName(e.target.value)}
                 />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="address">Enter your address</label>
+                <label htmlFor="address">Address</label>
                 <input
                   type="text"
                   name="address"
                   id="address"
-                  placeholder="Your address"
+                  placeholder="Enter your address"
                   autoComplete="off"
                   value={address}
                   onChange={e => setAddress(e.target.value)}
@@ -117,12 +117,12 @@ export const App = () => {
 
             <article className="md:grid grid-cols-3 gap-10">
               <div className="flex flex-col">
-                <label htmlFor="email">Enter your email</label>
+                <label htmlFor="email">Email</label>
                 <input
                   type="email"
                   name="email"
                   id="email"
-                  placeholder="Your email"
+                  placeholder="Enter your email"
                   autoComplete="off"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
@@ -130,12 +130,12 @@ export const App = () => {
               </div>
 
               <div className="flex flex-col">
-                <label htmlFor="phone">Enter your phone number</label>
+                <label htmlFor="phone">Phone number</label>
                 <input
                   type="text"
                   name="phone"
                   id="phone"
-                  placeholder="Your phone"
+                  placeholder="Enter your phone number"
                   autoComplete="off"
                   value={phone}
                   onChange={e => setPhone(e.target.value)}
@@ -143,12 +143,12 @@ export const App = () => {
               </div>
 
               <div className="flex flex-col">
-                <label htmlFor="website">Enter your website</label>
+                <label htmlFor="website">Website</label>
                 <input
                   type="url"
                   name="website"
                   id="website"
-                  placeholder="Your website"
+                  placeholder="Enter your link"
                   autoComplete="off"
                   value={website}
                   onChange={e => setWebsite(e.target.value)}
@@ -158,7 +158,7 @@ export const App = () => {
 
             <article className="md:grid grid-cols-2 gap-10">
               <div className="flex flex-col">
-                <label htmlFor="bankName">Enter your bank name</label>
+                <label htmlFor="bankName">Bank name</label>
                 <input
                   type="text"
                   name="bankName"
@@ -171,9 +171,7 @@ export const App = () => {
               </div>
 
               <div className="flex flex-col">
-                <label htmlFor="bankAccount">
-                  Enter your bank account number
-                </label>
+                <label htmlFor="bankAccount">Bank account number</label>
                 <input
                   type="text"
                   name="bankAccount"
@@ -188,12 +186,12 @@ export const App = () => {
 
             <article className="md:grid grid-cols-2 gap-10 mt-16">
               <div className="flex flex-col">
-                <label htmlFor="clientName">Enter client`s` name</label>
+                <label htmlFor="clientName">Client`s name</label>
                 <input
                   type="text"
                   name="clientName"
                   id="clientName"
-                  placeholder="Enter client`s` name"
+                  placeholder="Enter client`s name"
                   autoComplete="off"
                   value={clientName}
                   onChange={e => setClientName(e.target.value)}
@@ -201,12 +199,12 @@ export const App = () => {
               </div>
 
               <div className="flex flex-col">
-                <label htmlFor="clientAddress">Enter client`s` address</label>
+                <label htmlFor="clientAddress">Client`s address</label>
                 <input
                   type="text"
                   name="clientAddress"
                   id="clientAddress"
-                  placeholder="Enter client`s` address"
+                  placeholder="Enter client`s address"
                   autoComplete="off"
                   value={clientAddress}
                   onChange={e => setClientAddress(e.target.value)}
@@ -221,7 +219,7 @@ export const App = () => {
                   type="text"
                   name="invoiceNumber"
                   id="invoiceNumber"
-                  placeholder="Enter your bank invoice number"
+                  placeholder="Enter the invoice number"
                   autoComplete="off"
                   value={invoiceNumber}
                   onChange={e => setInvoiceNumber(e.target.value)}
@@ -269,10 +267,12 @@ export const App = () => {
                 setList={setList}
                 totalAmount={totalAmount}
                 setTotalAmount={setTotalAmount}
+                selectedCurrency={selectedCurrency}
+                setSelectedCurrency={setSelectedCurrency}
               />
             </article>
 
-            <label htmlFor="notes">Additional notes</label>
+            <label htmlFor="notes">Notes</label>
             <textarea
               name="notes"
               id="notes"

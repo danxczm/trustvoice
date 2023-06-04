@@ -1,3 +1,4 @@
+import CurrencyDropdown from './CurrencyDropdown';
 import { Fragment, useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { TiDeleteOutline, TiEdit } from 'react-icons/ti';
@@ -17,6 +18,8 @@ function TableForm({
   setList,
   totalAmount,
   setTotalAmount,
+  selectedCurrency,
+  setSelectedCurrency,
 }) {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -79,38 +82,46 @@ function TableForm({
             type="text"
             name="description"
             id="description"
-            placeholder="Item description"
+            placeholder="Enter the description"
             value={description}
             onChange={e => setDescription(e.target.value)}
           />
         </div>
 
-        <div className="md:grid grid-cols-3 gap-10">
-          <div className="flex flex-col">
+        <div className="md:grid grid-cols-2 gap-10 mb-10">
+          <div className="flex flex-col items-centre justify-center">
             <label htmlFor="quantity">Quantity</label>
             <input
               type="text"
               name="quantity"
               id="quantity"
-              placeholder="Quantity"
+              placeholder="Enter the quantity"
               value={quantity}
               onChange={e => setQuantity(e.target.value)}
             />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col items-centre justify-center">
             <label htmlFor="price">Price</label>
             <input
               type="text"
               name="price"
               id="price"
-              placeholder="Price"
+              placeholder="Enter the price"
               value={price}
               onChange={e => setPrice(e.target.value)}
             />
           </div>
-          <div className="flex flex-col">
-            <label htmlFor="Amount">Amount</label>
-            <p>{amount}</p>
+          <div className="flex flex-col justify-center items-center">
+            <label htmlFor="Amount"></label>
+            <p className="flex justify-center items-center font-bold text-xl">
+              {amount.toLocaleString()}
+            </p>
+          </div>
+          <div className="flex flex-col items-centre justify-center">
+            <CurrencyDropdown
+              selectedCurrency={selectedCurrency}
+              setSelectedCurrency={setSelectedCurrency}
+            />
           </div>
         </div>
         <button
@@ -128,6 +139,7 @@ function TableForm({
             <td className="font-bold">Quantity</td>
             <td className="font-bold">Price</td>
             <td className="font-bold">Amount</td>
+            <td className="font-bold flex items-centre justify-center">Edit</td>
           </tr>
         </thead>
         {list.map(({ id, description, quantity, price, amount }) => (
@@ -153,7 +165,7 @@ function TableForm({
       </table>
       <div>
         <h2 className="flex items-end justify-end text-gray-800 text-4xl font-bold mb-10">
-          Total: $ {totalAmount.toLocaleString()}
+          Total: {selectedCurrency} {totalAmount.toLocaleString()}
         </h2>
       </div>
     </>
