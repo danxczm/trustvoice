@@ -39,7 +39,7 @@ export const App = () => {
           <>
             <ReactToPrint
               trigger={() => (
-                <button className="bg-purple-500 ml-5 text-white font-bold py-2 px-8 rounded shadow border-2 border-purple-500 hover:bg-transparent hover:text-purple-500 transition-all duration-300">
+                <button className="bg-blue-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-blue-500 hover:bg-transparent hover:text-blue-500 transition-all duration-300">
                   Print/Download
                 </button>
               )}
@@ -80,7 +80,7 @@ export const App = () => {
               />
             </div>
             <button
-              className="mt-5 bg-purple-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-purple-500 hover:bg-transparent hover:text-purple-500 transition-all duration-300"
+              className="mt-5 bg-blue-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-blue-500 hover:bg-transparent hover:text-blue-500 transition-all duration-300"
               onClick={() => setShowInvoice(false)}
             >
               Edit information
@@ -283,7 +283,7 @@ export const App = () => {
               onChange={e => setNotes(e.target.value)}
             ></textarea>
             <button
-              className="mt-5 bg-purple-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-purple-500 hover:bg-transparent hover:text-purple-500 transition-all duration-300"
+              className="mt-5 bg-blue-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-blue-500 hover:bg-transparent hover:text-blue-500 transition-all duration-300"
               onClick={() => setShowInvoice(true)}
             >
               Preview Invoice

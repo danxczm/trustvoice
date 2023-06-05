@@ -88,7 +88,7 @@ function TableForm({
           />
         </div>
 
-        <div className="md:grid grid-cols-2 gap-10 mb-10">
+        <div className="md:grid grid-cols-3 gap-10 mb-10">
           <div className="flex flex-col items-centre justify-center">
             <label htmlFor="quantity">Quantity</label>
             <input
@@ -117,16 +117,10 @@ function TableForm({
               {amount.toLocaleString()}
             </p>
           </div>
-          <div className="flex flex-col items-centre justify-center">
-            <CurrencyDropdown
-              selectedCurrency={selectedCurrency}
-              setSelectedCurrency={setSelectedCurrency}
-            />
-          </div>
         </div>
         <button
           type="submit"
-          className="mb-5 bg-purple-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-purple-500 hover:bg-transparent hover:text-purple-500 transition-all duration-300"
+          className="mb-5 bg-blue-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-blue-500 hover:bg-transparent hover:text-blue-500 transition-all duration-300"
         >
           {isEditing ? 'Editing Row item' : 'Add Table Item'}
         </button>
@@ -164,8 +158,13 @@ function TableForm({
         ))}
       </table>
       <div>
-        <h2 className="flex items-end justify-end text-gray-800 text-4xl font-bold mb-10">
-          Total: {selectedCurrency} {totalAmount.toLocaleString()}
+        <h2 className="flex items-centre justify-end text-gray-800 text-xl font-bold mb-10">
+          Total:{' '}
+          <CurrencyDropdown
+            selectedCurrency={selectedCurrency}
+            setSelectedCurrency={setSelectedCurrency}
+          />{' '}
+          {totalAmount.toLocaleString()}
         </h2>
       </div>
     </>

@@ -5,12 +5,12 @@ function Table({ list, totalAmount, selectedCurrency }) {
     <>
       <table width="100%" className="mb-10">
         <thead>
-          <tr className="bg-gray-100 p-1">
-            <td className="font-bold">Description</td>
-            <td className="font-bold">Quantity</td>
-            <td className="font-bold">Price</td>
-            <td className="font-bold">Amount</td>
-            <td className="font-bold">Currency</td>
+          <tr className="bg-black text-white p-1">
+            <td className="font-bold border-l-2">Description</td>
+            <td className="font-bold border-l-2">Quantity</td>
+            <td className="font-bold border-l-2">Price</td>
+            <td className="font-bold border-l-2">Amount</td>
+            <td className="font-bold border-l-2">Currency</td>
           </tr>
         </thead>
         {list.map(({ id, description, quantity, price, amount }) => (

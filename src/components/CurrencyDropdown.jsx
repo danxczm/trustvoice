@@ -31,18 +31,18 @@ function CurrencyDropdown({ selectedCurrency, setSelectedCurrency }) {
   };
 
   return (
-    <div className="relative flex flex-column items-center w-[340px] h-[340px] rounded-lg">
+    <div className="relative flex flex-column justify-center items-center  w-28 rounded-lg">
       <button
         onClick={toggleCurrencyList}
-        className="bg-gray-100 p-1 w-full flex items-center justify-between
-        rounded-lg border-4 border-transparent active:border-white duration-300
+        className="w-full flex justify-center items-center
+        rounded-lg  border-transparent active:border-white duration-300
         active:text-white"
       >
         {selectedCurrency}
         {!isCurrencyListOpen ? (
-          <AiOutlineCaretDown className="h-6" />
+          <AiOutlineCaretDown className="h-3" />
         ) : (
-          <AiOutlineCaretUp className="h-6" />
+          <AiOutlineCaretUp className="h-3" />
         )}
       </button>
       {isCurrencyListOpen && (
