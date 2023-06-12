@@ -10,7 +10,6 @@ import ReactToPrint from 'react-to-print';
 import useAxios from 'hooks/useAxios';
 
 export const App = () => {
-  // const [showInvoice, setShowInvoice] = useState(false);
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
@@ -31,13 +30,13 @@ export const App = () => {
   const [list, setList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const componentRef = useRef();
-  const [selectedCurrency, setSelectedCurrency] = useState('USDT');
+  const [selectedSymbol, setSelectedSymbol] = useState('USDT');
 
-  const { response } = useAxios(
-    'coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en'
-  );
+  // const { response } = useAxios(
+  //   'coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en'
+  // );
 
-  console.log(`response: `, response);
+  // console.log(`response: `, response);
 
   return (
     <>
@@ -230,8 +229,8 @@ export const App = () => {
                   setList={setList}
                   totalAmount={totalAmount}
                   setTotalAmount={setTotalAmount}
-                  selectedCurrency={selectedCurrency}
-                  setSelectedCurrency={setSelectedCurrency}
+                  selectedSymbol={selectedSymbol}
+                  setSelectedSymbol={setSelectedSymbol}
                 />
               </article>
 
@@ -276,8 +275,8 @@ export const App = () => {
               setList={setList}
               totalAmount={totalAmount}
               setTotalAmount={setTotalAmount}
-              selectedCurrency={selectedCurrency}
-              setSelectedCurrency={setSelectedCurrency}
+              selectedSymbol={selectedSymbol}
+              setSelectedSymbol={setSelectedSymbol}
             />
             <Notes notes={notes} />
             <Footer

@@ -9,20 +9,20 @@ import {
 } from 'react-icons/si';
 import { AiOutlineCaretDown, AiOutlineCaretUp } from 'react-icons/ai';
 
-function CurrencyDropdown({ selectedCurrency, setSelectedCurrency }) {
+function CurrencyDropdown({ selectedSymbol, setSelectedSymbol }) {
   const [isCurrencyListOpen, setIsCurrencyListOpen] = useState(false);
 
   const options = [
-    { currency: 'USDT', icon: <SiTether /> },
-    { currency: 'BTC', icon: <SiBitcoin /> },
-    { currency: 'ETH', icon: <SiEthereum /> },
-    { currency: 'BCH', icon: <SiBitcoincash /> },
-    { currency: 'LTC', icon: <SiLitecoin /> },
-    { currency: 'DOGE', icon: <SiDogecoin /> },
+    { symbol: 'USDT', currency: 'tether', icon: <SiTether /> },
+    { symbol: 'BTC', currency: 'bitcoin', icon: <SiBitcoin /> },
+    { symbol: 'ETH', currency: 'ethereum', icon: <SiEthereum /> },
+    { symbol: 'BCH', currency: 'bitcoin-cash', icon: <SiBitcoincash /> },
+    { symbol: 'LTC', currency: 'litecoin', icon: <SiLitecoin /> },
+    { symbol: 'DOGE', currency: 'dogecoin', icon: <SiDogecoin /> },
   ];
 
-  const handleCurrencyChange = currency => {
-    setSelectedCurrency(currency);
+  const handleCurrencyChange = symbol => {
+    setSelectedSymbol(symbol);
     setIsCurrencyListOpen(false);
   };
 
@@ -38,7 +38,7 @@ function CurrencyDropdown({ selectedCurrency, setSelectedCurrency }) {
         rounded-lg  border-transparent active:border-white duration-300
         active:text-white"
       >
-        {selectedCurrency}
+        {selectedSymbol}
         {!isCurrencyListOpen ? (
           <AiOutlineCaretDown className="h-3" />
         ) : (
@@ -48,13 +48,13 @@ function CurrencyDropdown({ selectedCurrency, setSelectedCurrency }) {
       {isCurrencyListOpen && (
         <div className="bg-gray-300 absolute top-10 felx flex-col items-start rounded-lg p-2 w-full">
           {options.map(option => (
-            <div key={option.currency}>
+            <div key={option.symbol}>
               <button
                 type="button"
-                onClick={() => handleCurrencyChange(option.currency)}
+                onClick={() => handleCurrencyChange(option.symbol)}
                 className="flex w-full justify-between items-center hover:bg-gray-400 cursor-pointer border-l-transparent"
               >
-                {option.currency} {option.icon}
+                {option.symbol} {option.icon}
               </button>
             </div>
           ))}

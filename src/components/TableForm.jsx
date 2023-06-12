@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import { TiDeleteOutline, TiEdit } from 'react-icons/ti';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 function TableForm({
   description,
@@ -18,8 +19,8 @@ function TableForm({
   setList,
   totalAmount,
   setTotalAmount,
-  selectedCurrency,
-  setSelectedCurrency,
+  selectedSymbol,
+  setSelectedSymbol,
 }) {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -161,8 +162,8 @@ function TableForm({
         <h2 className="flex items-centre justify-end text-gray-800 text-xl font-bold mb-10">
           Total:{' '}
           <CurrencyDropdown
-            selectedCurrency={selectedCurrency}
-            setSelectedCurrency={setSelectedCurrency}
+            selectedSymbol={selectedSymbol}
+            setSelectedSymbol={setSelectedSymbol}
           />{' '}
           {totalAmount.toLocaleString()}
         </h2>

@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-function Table({ list, totalAmount, selectedCurrency }) {
+function Table({ list, totalAmount, selectedSymbol }) {
   return (
     <>
       <table width="100%" className="mb-10">
@@ -21,7 +21,7 @@ function Table({ list, totalAmount, selectedCurrency }) {
                 <td>{quantity}</td>
                 <td>{Number(price).toLocaleString()}</td>
                 <td>{Number(amount).toLocaleString()}</td>
-                <td>{selectedCurrency}</td>
+                <td>{selectedSymbol}</td>
               </tr>
             </tbody>
           </Fragment>
@@ -29,7 +29,7 @@ function Table({ list, totalAmount, selectedCurrency }) {
       </table>
       <div>
         <h2 className="flex items-end justify-end text-gray-800 text-4xl font-bold mb-10">
-          Total: {selectedCurrency} {totalAmount.toLocaleString()}
+          Total: {selectedSymbol} {totalAmount.toLocaleString()}
         </h2>
       </div>
     </>
