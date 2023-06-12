@@ -4,7 +4,6 @@ import { nanoid } from 'nanoid';
 import { TiDeleteOutline, TiEdit } from 'react-icons/ti';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
 
 function TableForm({
   description,

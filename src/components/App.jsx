@@ -7,7 +7,6 @@ import Notes from './Notes';
 import Table from './Table';
 import TableForm from './TableForm';
 import ReactToPrint from 'react-to-print';
-import useAxios from 'hooks/useAxios';
 
 export const App = () => {
   const [name, setName] = useState('');
