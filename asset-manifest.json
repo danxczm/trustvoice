@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/trustvoice/static/css/main.75e7391d.css",
-    "main.js": "/trustvoice/static/js/main.31fc4018.js",
+    "main.css": "/trustvoice/static/css/main.3e30a335.css",
+    "main.js": "/trustvoice/static/js/main.2e618b88.js",
     "index.html": "/trustvoice/index.html",
-    "main.75e7391d.css.map": "/trustvoice/static/css/main.75e7391d.css.map",
-    "main.31fc4018.js.map": "/trustvoice/static/js/main.31fc4018.js.map"
+    "main.3e30a335.css.map": "/trustvoice/static/css/main.3e30a335.css.map",
+    "main.2e618b88.js.map": "/trustvoice/static/js/main.2e618b88.js.map"
   },
   "entrypoints": [
-    "static/css/main.75e7391d.css",
-    "static/js/main.31fc4018.js"
+    "static/css/main.3e30a335.css",
+    "static/js/main.2e618b88.js"
   ]
 }
