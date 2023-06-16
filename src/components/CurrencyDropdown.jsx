@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { gql, useQuery } from '@apollo/client';
+
 import {
   SiTether,
   SiBitcoin,
@@ -11,6 +13,26 @@ import { AiOutlineCaretDown, AiOutlineCaretUp } from 'react-icons/ai';
 
 function CurrencyDropdown({ selectedSymbol, setSelectedSymbol }) {
   const [isCurrencyListOpen, setIsCurrencyListOpen] = useState(false);
+  let currencyData;
+
+  const CURRENCY_DATA = gql`
+    query CurrencyData {
+      widgetRates(
+        currencyCodesArray: ["USDT", "BTC", "ETH", "BCH", "LTC", "DOGE"]
+        deviceId: "anythingForDifferentClients"
+      )
+    }
+  `;
+
+  const { data, loading, error } = useQuery(CURRENCY_DATA);
+
+  if (loading) console.log(`loading...`);
+  if (error) console.log(`error`);
+
+  if (data) {
+    currencyData = data.widgetRates.ratesArray;
+    const currencyDataObject = currencyData.map(el => console.log(`el: `, el));
+  }
 
   const options = [
     { symbol: 'USDT', currency: 'tether', icon: <SiTether /> },
