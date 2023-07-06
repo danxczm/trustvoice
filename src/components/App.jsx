@@ -14,7 +14,7 @@ export const App = () => {
         }}
       >
         <Routes>
-          <Route path="/" element={<FormInvoice />} />
+          <Route path="/trustvoice" element={<FormInvoice />} />
           <Route path="/homePage" element={<div>Welcome to Trusty Plus</div>} />
           <Route path="/invoice" element={<ViewInvoice />} />
           <Route path="*" element={<div>There is no such page</div>} />
