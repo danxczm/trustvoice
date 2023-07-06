@@ -74,7 +74,7 @@ function TableForm() {
 
     setTotalAmount(sum);
     dispatch({ type: 'setTotalAmount', payload: sum });
-  }, [quantity, price]);
+  }, [quantity, price, dispatch]);
 
   useEffect(() => {
     if (list.length === 0) setTotalAmount(0);
