@@ -1,4 +1,9 @@
-const Footer = ({ name, email, website, phone, bankAccount, bankName }) => {
+import { useSelector } from 'react-redux';
+
+const Footer = () => {
+  const { name, website, email, phone, bankAccount, bankName } = useSelector(
+    state => state.invoice
+  );
   return (
     <footer className="footer border-t-2 border-gray-300 pt-5">
       <ul className="flex flex-wrap items-center justify-center">
@@ -22,7 +27,7 @@ const Footer = ({ name, email, website, phone, bankAccount, bankName }) => {
         </li>
         <li>
           <span className="font-bold">
-            Website:{" "}
+            Website:{' '}
             <a href={website} target="_blank" rel="nooper noreferrer">
               {website}
             </a>

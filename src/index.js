@@ -1,17 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ApolloProvider } from '@apollo/client';
-import client from 'apollo/client';
+// import { ApolloProvider } from '@apollo/client';
+// import client from 'apollo/client';
 import { App } from 'components/App';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <ApolloProvider client={client}>
+  // <ApolloProvider client={client}>
+  <Provider store={store}>
     <React.StrictMode>
-      {/* <FetchData /> */}
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </React.StrictMode>
-  </ApolloProvider>
+  </Provider>
+  // </ApolloProvider>
 );
 
 // query ExampleQuery {

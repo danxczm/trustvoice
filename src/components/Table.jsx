@@ -1,6 +1,10 @@
 import { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 
-function Table({ list, totalAmount, selectedSymbol }) {
+function Table() {
+  const { list, totalAmount, selectedSymbol } = useSelector(
+    state => state.invoice
+  );
   return (
     <>
       <table width="100%" className="mb-10">

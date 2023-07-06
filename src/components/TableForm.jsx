@@ -4,27 +4,26 @@ import { nanoid } from 'nanoid';
 import { TiDeleteOutline, TiEdit } from 'react-icons/ti';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from 'react-redux';
 
-function TableForm({
-  description,
-  setDescription,
-  quantity,
-  setQuantity,
-  price,
-  setPrice,
-  amount,
-  setAmount,
-  list,
-  setList,
-  totalAmount,
-  setTotalAmount,
-  selectedSymbol,
-  setSelectedSymbol,
-}) {
+function TableForm() {
+  const [description, setDescription] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [price, setPrice] = useState('');
+  const [amount, setAmount] = useState('');
+  const [totalAmount, setTotalAmount] = useState(0);
   const [isEditing, setIsEditing] = useState(false);
 
+  const dispatch = useDispatch();
+  const { list } = useSelector(state => state.invoice);
+
   // Calculate amount
-  useEffect(() => setAmount(quantity * price), [price, quantity, setAmount]);
+  useEffect(() => setAmount(quantity * price), [price, quantity]);
+
+  // function which sends action
+  const setList = list => {
+    dispatch({ type: 'setList', payload: list });
+  };
 
   const createRow = e => {
     e.preventDefault();
@@ -41,15 +40,19 @@ function TableForm({
       price,
       amount,
     };
+
+    setList([...list, newItems]);
+
     setDescription('');
     setQuantity('');
     setPrice('');
     setAmount('');
     setIsEditing(false);
-    setList([...list, newItems]);
   };
 
-  const deleteRow = id => setList(list.filter(item => item.id !== id));
+  const deleteRow = id => {
+    setList(list.filter(item => item.id !== id));
+  };
 
   const editRow = id => {
     const editingRow = list.find(item => item.id === id);
@@ -70,7 +73,12 @@ function TableForm({
     });
 
     setTotalAmount(sum);
-  });
+    dispatch({ type: 'setTotalAmount', payload: sum });
+  }, [quantity, price]);
+
+  useEffect(() => {
+    if (list.length === 0) setTotalAmount(0);
+  }, [list]);
 
   return (
     <>
@@ -159,12 +167,7 @@ function TableForm({
       </table>
       <div>
         <h2 className="flex items-centre justify-end text-gray-800 text-xl font-bold mb-10">
-          Total:{' '}
-          <CurrencyDropdown
-            selectedSymbol={selectedSymbol}
-            setSelectedSymbol={setSelectedSymbol}
-          />{' '}
-          {totalAmount.toLocaleString()}
+          Total: <CurrencyDropdown /> {totalAmount.toLocaleString()}
         </h2>
       </div>
     </>

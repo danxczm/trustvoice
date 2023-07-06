@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { gql, useQuery } from '@apollo/client';
+// import { gql, useQuery } from '@apollo/client';
 
 import {
   SiTether,
@@ -10,29 +10,35 @@ import {
   SiEthereum,
 } from 'react-icons/si';
 import { AiOutlineCaretDown, AiOutlineCaretUp } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
 
-function CurrencyDropdown({ selectedSymbol, setSelectedSymbol }) {
+function CurrencyDropdown() {
   const [isCurrencyListOpen, setIsCurrencyListOpen] = useState(false);
-  let currencyData;
 
-  const CURRENCY_DATA = gql`
-    query CurrencyData {
-      widgetRates(
-        currencyCodesArray: ["USDT", "BTC", "ETH", "BCH", "LTC", "DOGE"]
-        deviceId: "anythingForDifferentClients"
-      )
-    }
-  `;
+  const dispatch = useDispatch();
 
-  const { data, loading, error } = useQuery(CURRENCY_DATA);
+  const { selectedSymbol } = useSelector(state => state.invoice);
 
-  if (loading) console.log(`loading...`);
-  if (error) console.log(`error`);
+  // let currencyData;
 
-  if (data) {
-    currencyData = data.widgetRates.ratesArray;
-    const currencyDataObject = currencyData.map(el => console.log(`el: `, el));
-  }
+  // const CURRENCY_DATA = gql`
+  //   query CurrencyData {
+  //     widgetRates(
+  //       currencyCodesArray: ["USDT", "BTC", "ETH", "BCH", "LTC", "DOGE"]
+  //       deviceId: "anythingForDifferentClients"
+  //     )
+  //   }
+  // `;
+
+  // const { data, loading, error } = useQuery(CURRENCY_DATA);
+
+  // if (loading) console.log(`loading...`);
+  // if (error) console.log(`error`);
+
+  // if (data) {
+  // currencyData = data.widgetRates.ratesArray;
+  // const currencyDataObject = currencyData.map(el => console.log(`el: `, el));
+  // }
 
   const options = [
     { symbol: 'USDT', currency: 'tether', icon: <SiTether /> },
@@ -44,7 +50,7 @@ function CurrencyDropdown({ selectedSymbol, setSelectedSymbol }) {
   ];
 
   const handleCurrencyChange = symbol => {
-    setSelectedSymbol(symbol);
+    dispatch({ type: 'setSymbol', payload: symbol });
     setIsCurrencyListOpen(false);
   };
 

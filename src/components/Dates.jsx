@@ -1,4 +1,10 @@
-function Dates({ invoiceNumber, invoiceDate, dueDate }) {
+import { useSelector } from 'react-redux';
+
+function Dates() {
+  const { invoiceNumber, invoiceDate, dueDate } = useSelector(
+    state => state.invoice
+  );
+
   return (
     <article className="mt-10 mb-14 flex flex-col items-end justify-end">
       <ul>
